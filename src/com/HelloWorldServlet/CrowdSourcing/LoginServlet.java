@@ -68,7 +68,7 @@ public class LoginServlet extends HttpServlet {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            logger.error("Database connection problem");
+            logger.error("Oops Database connection problem");
             throw new ServletException("DB Connection problem.");
         }finally{
             try {

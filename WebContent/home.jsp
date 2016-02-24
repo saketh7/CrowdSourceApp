@@ -11,7 +11,7 @@
 <%User user = (User) session.getAttribute("User"); %>
 <h3>Hi <%=user.getName() %></h3>
 <strong>Your Email</strong>: <%=user.getEmail() %><br>
-<strong>Your Country</strong>: <%=user.getAddress() %><br>
+<strong>Your Address</strong>: <%=user.getAddress() %><br>
 <br>
 <form action="Logout" method="post">
 <input type="submit" value="Logout" >
