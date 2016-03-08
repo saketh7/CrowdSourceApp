@@ -29,7 +29,7 @@ public class EditProfileServlet extends HttpServlet {
         String firstName = request.getParameter("FirstName");
         String lastName = request.getParameter("LastName");
         String email = request.getParameter("Email");
-        String Aoi = request.getParameter("AreaofInterest");
+       
         String address = request.getParameter("Address");
         String city = request.getParameter("City");
         String state = request.getParameter("State");
@@ -39,9 +39,9 @@ public class EditProfileServlet extends HttpServlet {
 
         
         String errorMsg = null;
-        if(email == null || email.equals("")){
+        /*if(email == null || email.equals("")){
             errorMsg ="User Email can't be null or empty";
-        }
+        }*/
         if(firstName == null || firstName.equals("")){
             errorMsg = "Password can't be null or empty";
         }
@@ -57,17 +57,16 @@ public class EditProfileServlet extends HttpServlet {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-        	 ps = con.prepareStatement("insert into user(FirstName,LastName,Address,AreaofInterest,City,State,Zipcode,Country,Telephone) values (?,?,?,?,?,?,?,?,?)");
+        	 ps = con.prepareStatement("update user set FirstName=? , LastName = ?,Address=?, City = ? , State = ?,  Telephone=? , Country=?,  Zipcode = ? where  IdUser = 1");
              ps.setString(1, firstName);
              ps.setString(2, lastName);
              ps.setString(3, address);
-             ps.setString(4, Aoi);
-             ps.setString(5, city);
-             ps.setString(6, state);
-             ps.setString(7, state);
-             ps.setString(8, telephone);
-             ps.setString(9, country);
-             ps.setString(9, zipcode);
+             ps.setString(4, city);
+             ps.setString(5, state);
+   
+             ps.setString(6, telephone);
+             ps.setString(7, country);
+             ps.setString(8, zipcode);
              ps.execute();
              
              logger.info("User registered with email="+email);

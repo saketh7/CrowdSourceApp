@@ -13,8 +13,7 @@
 <form action="EditProfile" method="post">
 <strong>First Name </strong>:<input type="text" name="FirstName"><br>
 <strong>Last Name</strong>:<input type="password" name="LastName"><br>
-<strong>Email</strong>:<input type="text" name="Email"><br>
-<strong>Area of Interest</strong>:<input type="password" name="AreaofInterest"><br>
+
 <strong>Address</strong>:<input type="text" name="Address"><br>
 <strong>City</strong>:<input type="password" name="City"><br>
 <strong>State</strong>:<input type="text" name="State"><br>
