@@ -28,7 +28,7 @@ public class EditProfileServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String firstName = request.getParameter("FirstName");
         String lastName = request.getParameter("LastName");
-        String email = request.getParameter("Email");
+       String email = request.getParameter("Email");
        
         String address = request.getParameter("Address");
         String city = request.getParameter("City");
@@ -36,8 +36,9 @@ public class EditProfileServlet extends HttpServlet {
         String zipcode = request.getParameter("Zipcode");
         String country = request.getParameter("Country");
         String telephone = request.getParameter("Telephone");
-
-        
+        HttpSession session = request.getSession();
+       
+       
         String errorMsg = null;
         /*if(email == null || email.equals("")){
             errorMsg ="User Email can't be null or empty";
@@ -57,7 +58,9 @@ public class EditProfileServlet extends HttpServlet {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-        	 ps = con.prepareStatement("update user set FirstName=? , LastName = ?,Address=?, City = ? , State = ?,  Telephone=? , Country=?,  Zipcode = ? where  IdUser = 1");
+        	User user = (User) session.getAttribute("User");
+        	System.out.println(user.getEmail());
+        	 ps = con.prepareStatement("update user set FirstName=? , LastName = ?,Address=?, City = ? , State = ?,  Telephone=? , Country=?,  Zipcode = ? where  email='"+user.getEmail()+"'");
              ps.setString(1, firstName);
              ps.setString(2, lastName);
              ps.setString(3, address);
@@ -69,7 +72,7 @@ public class EditProfileServlet extends HttpServlet {
              ps.setString(8, zipcode);
              ps.execute();
              
-             logger.info("User registered with email="+email);
+          //   logger.info("User registered with email="+email);
               
              //forward to login page to login
              RequestDispatcher rd = getServletContext().getRequestDispatcher("/EditProfile.jsp");

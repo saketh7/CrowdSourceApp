@@ -10,7 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
- 
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
  
 @WebServlet(name = "Register", urlPatterns = { "/Register" })
@@ -25,7 +26,8 @@ public class RegisterServlet extends HttpServlet {
         String UserPassw = request.getParameter("password");
         String Name = request.getParameter("name");
         String Address = request.getParameter("address");
-        
+        HttpSession session = request.getSession();
+        session.getAttribute("User");
         
         String errorMsg = null;
         if(email == null || email.equals("")){
