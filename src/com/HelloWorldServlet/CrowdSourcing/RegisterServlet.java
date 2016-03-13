@@ -10,8 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
+ 
 import org.apache.log4j.Logger;
  
 @WebServlet(name = "Register", urlPatterns = { "/Register" })
@@ -24,10 +23,10 @@ public class RegisterServlet extends HttpServlet {
         String email = request.getParameter("email");
         String UserRole = request.getParameter("Role");
         String UserPassw = request.getParameter("password");
-        String Name = request.getParameter("name");
+        String Fname = request.getParameter("fname");
+        String Lname = request.getParameter("lname");
         String Address = request.getParameter("address");
-        HttpSession session = request.getSession();
-        session.getAttribute("User");
+        
         
         String errorMsg = null;
         if(email == null || email.equals("")){
@@ -36,8 +35,11 @@ public class RegisterServlet extends HttpServlet {
         if(UserPassw == null || UserPassw.equals("")){
             errorMsg = "Password can't be null or empty.";
         }
-        if(Name == null || Name.equals("")){
-            errorMsg = "Name can't be null or empty.";
+        if(Fname == null || Fname.equals("")){
+            errorMsg = "First Name can't be null or empty.";
+        }
+        if(Lname == null || Lname.equals("")){
+            errorMsg = "Last Name can't be null or empty.";
         }
         if(Address == null || Address.equals("")){
             errorMsg = "Country can't be null or empty.";
@@ -54,12 +56,13 @@ public class RegisterServlet extends HttpServlet {
         	System.out.println(" Hello"+(Connection) getServletContext().getAttribute("DBConnection"));
         PreparedStatement ps = null;
         try {
-            ps = con.prepareStatement("insert into user(UserRole,UserPassw,Name, Address,email) values (?,?,?,?,?)");
+            ps = con.prepareStatement("insert into user(UserRole,UserPassw,FirstName,LastName, Address,email) values (?,?,?,?,?,?)");
             ps.setString(1, UserRole);
             ps.setString(2, UserPassw);
-            ps.setString(3, Name);
-            ps.setString(4, Address);
-            ps.setString(5, email);
+            ps.setString(3, Fname);
+            ps.setString(4, Lname);
+            ps.setString(5, Address);
+            ps.setString(6, email);
             
              
             ps.execute();
