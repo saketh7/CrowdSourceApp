@@ -26,6 +26,10 @@ public class RegisterServlet extends HttpServlet {
         String Fname = request.getParameter("fname");
         String Lname = request.getParameter("lname");
         String Address = request.getParameter("address");
+        String PaymentType = request.getParameter("PaymentType");
+        String CardNumber = request.getParameter("CardNumber");
+        String CardHolderName = request.getParameter("CardHolderName");
+        String ExpiryDate = request.getParameter("ExpiryDate");
         
         
         String errorMsg = null;
@@ -42,9 +46,32 @@ public class RegisterServlet extends HttpServlet {
             errorMsg = "Last Name can't be null or empty.";
         }
         if(Address == null || Address.equals("")){
-            errorMsg = "Country can't be null or empty.";
+            errorMsg = "Address can't be null or empty.";
         }
-         
+        if(PaymentType == null || PaymentType.equals("")){
+            errorMsg = "PaymentType can't be null or empty.";
+        }
+        if(CardHolderName == null || CardHolderName.equals("")){
+            errorMsg = "CardHolderName can't be null or empty.";
+        }
+        if(CardNumber == null || CardNumber.equals("")){
+            errorMsg = "CardNumber can't be null or empty.";
+        }
+        if(ExpiryDate == null || ExpiryDate.equals("")){
+            errorMsg = "Expiry Date can't be null or empty.";
+        }
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         if(errorMsg != null){
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/register.html");
             PrintWriter out= response.getWriter();
@@ -56,13 +83,22 @@ public class RegisterServlet extends HttpServlet {
         	System.out.println(" Hello"+(Connection) getServletContext().getAttribute("DBConnection"));
         PreparedStatement ps = null;
         try {
-            ps = con.prepareStatement("insert into user(UserRole,UserPassw,FirstName,LastName, Address,email) values (?,?,?,?,?,?)");
+            ps = con.prepareStatement("insert into user(UserRole,UserPassw,FirstName,LastName, Address,email,paymenttype,CardNumber,CardHolderName,ExpiryDate)  values (?,?,?,?,?,?,?,?,?,?)");
             ps.setString(1, UserRole);
             ps.setString(2, UserPassw);
             ps.setString(3, Fname);
             ps.setString(4, Lname);
             ps.setString(5, Address);
             ps.setString(6, email);
+            
+            ps.setString(7, PaymentType);
+            ps.setString(8, CardNumber);
+            ps.setString(9, CardHolderName);
+            ps.setString(10, ExpiryDate);
+            
+            
+            
+            
             
              
             ps.execute();

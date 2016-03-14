@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%-- <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*"%>
 <%@page import="java.util.*,java.util.ArrayList"%>
 <%@page import="net.sf.json.JSONObject"%>
@@ -28,4 +28,4 @@ response.getWriter().write(jo.toString());
 catch(Exception e){
 System.out.println(e);
 }
-%>
+%> --%>

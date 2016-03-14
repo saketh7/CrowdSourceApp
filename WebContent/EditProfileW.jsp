@@ -9,18 +9,18 @@
 <title>Login Page</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-   $(document).ready(function() {
-	        $('#categories').change(function(event) {  
-		        var $cat=$("select#categories").val();
-					$.get('ActionServlet',{category:$cat},function(responseJson) {   
-		            var $select = $('#areas');                           
-		               $select.find('option').remove();                          
-		               $.each(responseJson, function(key, value) {      
-					   $('<option>').val(key).text(value).appendTo($select);      
-		                    });
-		            });
-		        });
-		    });                
+$(document).ready(function() {
+	$('#categories').change(function(event) { 
+		var $cat=$("select#categories").val();
+					$.get('ActionServlet',{category:$cat},function(responseJson) { 
+		var $select = $('#areas'); 
+		$select.find('option').remove(); 
+		$.each(responseJson, function(key, value) {
+					$('<option>').val(key).text(value).appendTo($select); 
+		});
+		});
+		});
+		});  
 </script>
 </head>
 <body>
