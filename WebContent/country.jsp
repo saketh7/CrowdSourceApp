@@ -11,7 +11,7 @@
     $(document).ready(function() {
         $('#categories').change(function(event) {  
         var $cat=$("select#categories").val();
-			$.get('ActionServlet',{countryname:$cat},function(responseJson) {   
+			$.get('ActionServlet',{category:$cat},function(responseJson) {   
             var $select = $('#areas');                           
                $select.find('option').remove();                          
                $.each(responseJson, function(key, value) {      

@@ -22,7 +22,7 @@
 </style>
 </head>
 <body>
-<form   action="EditProfile.jsp" method="post">
+<form   action="EditProfileW.jsp" method="post">
 <%User user = (User) session.getAttribute("User"); %>
 <h3 class ="button">Welcome <%=user.getName() %></h3>
 <input type="submit" class="button" value="Edit Profile">

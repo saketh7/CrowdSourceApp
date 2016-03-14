@@ -28,8 +28,7 @@ public class EditProfileServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String firstName = request.getParameter("FirstName");
         String lastName = request.getParameter("LastName");
-       String email = request.getParameter("Email");
-       
+        String email = request.getParameter("Email");
         String address = request.getParameter("Address");
         String city = request.getParameter("City");
         String state = request.getParameter("State");

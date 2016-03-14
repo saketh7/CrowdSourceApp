@@ -36,12 +36,13 @@ public class ActionServlet extends HttpServlet {
 	 */
     
     protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-    	String country=request.getParameter("countryname");
+    	String category=request.getParameter("category");
+    	System.out.println(category);
     	ResultSet rs=null;
         try{
         	Connection con = (Connection) getServletContext().getAttribute("DBConnection");
         	Statement stmt = con.createStatement();  
-        	rs = stmt.executeQuery("SELECT idExpertiseAreas,Description FROM  expertiseareas where idCategorie = "+country);
+        	rs = stmt.executeQuery("SELECT idExpertiseAreas,Description FROM  expertiseareas where idCategorie = "+category);
         	Map<String, String> map = new LinkedHashMap<String, String>();
     
         	while(rs.next()){
