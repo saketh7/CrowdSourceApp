@@ -1,26 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=US-ASCII" pageEncoding="US-ASCII"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@page import="com.HelloWorldServlet.CrowdSourcing.User"%>
 <%@page import="com.HelloWorldServlet.CrowdSourcing.DBConnectionManager"%>
 <%@page import="java.sql.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="US-ASCII">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Login Page</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-   $(document).ready(function() {
-	        $('#categories').change(function(event) {  
-		        var $cat=$("select#categories").val();
-					$.get('ActionServlet',{category:$cat},function(responseJson) {   
-		            var $select = $('#areas');                           
-		               $select.find('option').remove();                          
-		               $.each(responseJson, function(key, value) {      
-					   $('<option>').val(key).text(value).appendTo($select);      
-		                    });
-		            });
-		        });
-		    });                
+$(document).ready(function() {
+$('#categories').change(function(event) {
+var $cat=$("select#categories").val();
+				$.get('ActionServlet',{category:$cat},function(responseJson) {
+var $select = $('#areas');
+$select.find('option').remove();
+$.each(responseJson, function(key, value) {
+$('<option>').val(key).text(value).appendTo($select);
+});
+});
+});
+});
 </script>
 </head>
 <body>
@@ -34,7 +34,7 @@ rs = stmt.executeQuery("SELECT * FROM user where  email='"+user.getEmail()+"'");
 
 while(rs.next()){
  %>
-<form action="EditProfileW" method="post">
+<form action="EditProfileW" method="post" id="main" name="main">
 <strong>First Name </strong>:<input type="text" name="FirstName" value="<%=rs.getString("FirstName")%>"><br>
 <strong>Last Name</strong>:<input type="text" name="LastName" value="<%=rs.getString("LastName")%>"><br>
 
@@ -53,9 +53,9 @@ while(rs.next()){
 </form>
 <br>
 <h3>Expertise Areas</h3>
-<form action="" method="post">
+<form action="" method="post" id="second" name="second">
 Select Category:
-<select id="categories">
+<select id="categories" name="categories">
 <option>Select Category</option>
 <%ResultSet rs2=null;
     try{
