@@ -74,7 +74,22 @@ Select Area:
 <select id="areas">
 <option>Select Area</option>
 </select>
- <input type="submit" value="Add">
+<br>
+ <strong>Level</strong>:<select id="level">
+<option value="1">Beginner</option>
+<option value="2">Skilled</option>
+<option value="3">Intermediate</option>
+<option value="4">Experienced</option>
+<option value="5">Advanced</option>
+<option value="6">Expert</option>
+</select><br>
+<strong>Fee $</strong>:<input id="fee" name="fee" " size="10" value="" type="text" /> <br>
+
+<input id="aval" name="aval"  type="radio" value="1" checked="checked"/>
+<label>Yes</label>
+<input id="aval" name="aval" class="element radio" type="radio" value="0" />
+<label>No</label>
+  <input type="submit" value="Add"><br>
 </form>
 <br>
 </body>
