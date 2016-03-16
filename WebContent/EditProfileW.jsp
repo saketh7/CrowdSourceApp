@@ -1,26 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=US-ASCII" pageEncoding="US-ASCII"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@page import="com.HelloWorldServlet.CrowdSourcing.User"%>
 <%@page import="com.HelloWorldServlet.CrowdSourcing.DBConnectionManager"%>
 <%@page import="java.sql.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="US-ASCII">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Login Page</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 $(document).ready(function() {
-	$('#categories').change(function(event) { 
-		var $cat=$("select#categories").val();
-					$.get('ActionServlet',{category:$cat},function(responseJson) { 
-		var $select = $('#areas'); 
-		$select.find('option').remove(); 
-		$.each(responseJson, function(key, value) {
-					$('<option>').val(key).text(value).appendTo($select); 
-		});
-		});
-		});
-		});  
+$('#categories').change(function(event) {
+var $cat=$("select#categories").val();
+				$.get('ActionServlet',{category:$cat},function(responseJson) {
+var $select = $('#areas');
+$select.find('option').remove();
+$.each(responseJson, function(key, value) {
+$('<option>').val(key).text(value).appendTo($select);
+});
+});
+});
+});
 </script>
 </head>
 <body>
@@ -34,7 +34,7 @@ rs = stmt.executeQuery("SELECT * FROM user where  email='"+user.getEmail()+"'");
 
 while(rs.next()){
  %>
-<form action="EditProfileW" method="post">
+<form action="EditProfileW" method="post" id="main" name="main">
 <strong>First Name </strong>:<input type="text" name="FirstName" value="<%=rs.getString("FirstName")%>"><br>
 <strong>Last Name</strong>:<input type="text" name="LastName" value="<%=rs.getString("LastName")%>"><br>
 
@@ -53,9 +53,9 @@ while(rs.next()){
 </form>
 <br>
 <h3>Expertise Areas</h3>
-<form action="" method="post">
+<form action="" method="post" id="second" name="second">
 Select Category:
-<select id="categories">
+<select id="categories" name="categories">
 <option>Select Category</option>
 <%ResultSet rs2=null;
     try{
@@ -74,7 +74,22 @@ Select Area:
 <select id="areas">
 <option>Select Area</option>
 </select>
- <input type="submit" value="Add">
+<br>
+ <strong>Level</strong>:<select id="level">
+<option value="1">Beginner</option>
+<option value="2">Skilled</option>
+<option value="3">Intermediate</option>
+<option value="4">Experienced</option>
+<option value="5">Advanced</option>
+<option value="6">Expert</option>
+</select><br>
+<strong>Fee $</strong>:<input id="fee" name="fee" " size="10" value="" type="text" /> <br>
+
+<input id="aval" name="aval"  type="radio" value="1" checked="checked"/>
+<label>Yes</label>
+<input id="aval" name="aval" class="element radio" type="radio" value="0" />
+<label>No</label>
+  <input type="submit" value="Add"><br>
 </form>
 <br>
 </body>
