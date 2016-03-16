@@ -4,6 +4,14 @@
   <welcome-file-list>
     <welcome-file>login.html</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <servlet-name>ActionServlet</servlet-name>
+ 	<servlet-class>com.HelloWorldServlet.CrowdSourcing.ActionServlet</servlet-class>
+  </servlet>
+<servlet-mapping>
+<servlet-name>ActionServlet</servlet-name>
+	<url-pattern>/ActionServlet/*</url-pattern>
+</servlet-mapping>
   <context-param>
     <param-name>dbUser</param-name>
     <param-value>syginfo_crowdsrc</param-value>
