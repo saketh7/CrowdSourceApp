@@ -6,9 +6,10 @@
 <html>
 <head>
 <meta charset="US-ASCII">
-<title>Login Page</title>
+<title>Login Page1</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
+
 $(document).ready(function() {
 	$('#categories').change(function(event) { 
 		var $cat=$("select#categories").val();
@@ -26,9 +27,9 @@ $(document).ready(function() {
 
 <body>
 <Strong>ADD TASK</Strong><br>
-<form action="">
+<form action="AddTask" method="post">
 <strong>Select Category:</strong>
-<select id="categories">
+<select id="categories" name="category">
 <%ResultSet rs5=null;
     try{
 Connection con = (Connection) getServletContext().getAttribute("DBConnection");
@@ -41,6 +42,39 @@ while(rs5.next()){
 }}catch(Exception e){
     }
  %>
+ </select>
+ <strong>Select Area:</strong>
+<select id="areas" name="area">
+<option>Select Area</option>
+</select>
+<br>
+<br>
+<strong>Give Task Description:</strong><textarea name="taskdes" rows="5" cols="15"></textarea>
+<br>
+<br>
+<strong>Start Date</strong>:<input type="text" name="DateStart" value="YYYY-MM-DD"><br>
+<br>
+<strong>Deadline Date</strong>:<input type="text" name="DateEnd" value="YYYY-MM-DD"><br>
+
+<br>
+<strong>Payment Type </strong>:<select name="payment">
+  <option value="MasterCard">MasterCard</option>
+  <option value="Visa">Visa</option>
+  </select>
+  <br><br>
+<strong>Budget</strong><input type="integer" name="budget $" value="">
+<br><br>
+
+<strong>Maximum number of workers needed </strong><select name="noe"> <option value="no1">1</option>
+  <option value="no2">2</option>
+  <option value="no3">3</option>
+    <option value="no4">4</option>
+    </select>
+<br>
+<br>
+
+<input type="submit" value="Submit">
+
 </form>
 </body>
 </html>

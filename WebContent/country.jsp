@@ -9,9 +9,10 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('#categories').change(function(event) {  
+	    $('#categories').change(function(event) {  
         var $cat=$("select#categories").val();
 			$.get('ActionServlet',{category:$cat},function(responseJson) {   
+				alert("after json")
             var $select = $('#areas');                           
                $select.find('option').remove();                          
                $.each(responseJson, function(key, value) {      
