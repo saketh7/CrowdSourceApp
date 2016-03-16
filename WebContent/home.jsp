@@ -22,20 +22,23 @@
 </style>
 </head>
 <body>
-<form   action="EditProfile.jsp" method="post">
+<form   action="EditProfileW.jsp" method="post">
 <%User user = (User) session.getAttribute("User"); %>
 <h3 class ="button">Welcome <%=user.getName() %></h3>
 <input type="submit" class="button" value="Edit Profile">
-
-
+</form>
+<form   action="AddTask.jsp" method="post">
+<input type="submit" class="button" value="Add Task">
+</form>
 <br>
 <strong>Your Email</strong>: <%=user.getEmail() %><br>
 <strong>Your Address</strong>: <%=user.getAddress() %><br>
 <br>
-</form>
+
 <form action="Logout" method="post">
 <input type="submit" value="Logout" >
 </form>
+
 
 <br>
 
