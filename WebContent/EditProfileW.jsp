@@ -24,7 +24,7 @@ $('<option>').val(key).text(value).appendTo($select);
 </script>
 </head>
 <body>
-<h3>Edit Profile</h3>
+<h3>Edit Profile Worker</h3>
 <%ResultSet rs=null;
     try{
 Connection con = (Connection) getServletContext().getAttribute("DBConnection");
