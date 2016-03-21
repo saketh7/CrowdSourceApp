@@ -31,9 +31,9 @@ public class AddTaskServlet extends HttpServlet {
          String taskDes = request.getParameter("taskdes");
          String startdate = request.getParameter("DateStart");
          String enddate = request.getParameter("DateEnd");
-         String paymentType = request.getParameter("payment");
+        // String paymentType = request.getParameter("payment");
          String budget = request.getParameter("budget");
-         String noe = request.getParameter("noe");
+         String noe = request.getParameter("NumMaxWorker");
         HttpSession session = request.getSession();
        
        
@@ -60,7 +60,7 @@ public class AddTaskServlet extends HttpServlet {
         	System.out.println(user.getEmail());
         	System.out.println(user.getId());
         	
-        	 ps = con.prepareStatement("insert into task(idCategorie,idExpertiseAreas,Comments,IdUser,DateStart,DateEnd,PaymentType,Budget,NumMaxWorker)  values (?,?,?,?,?,?,?,?,?)");
+        	 ps = con.prepareStatement("insert into task(idCategorie,idExpertiseAreas,Comments,IdUser,DateStart,DateEnd,Budget,NumMaxWorker)  values (?,?,?,?,?,?,?,?)");
              ps.setString(1, category);
              ps.setString(2, area);
              ps.setString(3, taskDes);
@@ -68,9 +68,9 @@ public class AddTaskServlet extends HttpServlet {
              ps.setString(5, startdate);
              ps.setString(6, enddate);
    
-             ps.setString(7, paymentType);
-             ps.setString(8, budget);
-             ps.setString(9, noe);
+           //  ps.setString(7, paymentType);
+             ps.setString(7, budget);
+             ps.setString(8, noe);
              ps.execute();
              
           //   logger.info("User registered with email="+email);

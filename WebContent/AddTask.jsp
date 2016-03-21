@@ -57,21 +57,37 @@ while(rs5.next()){
 <strong>Deadline Date</strong>:<input type="text" name="DateEnd" value="YYYY-MM-DD"><br>
 
 <br>
-<strong>Payment Type </strong>:<select name="payment">
-  <option value="MasterCard">MasterCard</option>
-  <option value="Visa">Visa</option>
-  </select>
-  <br><br>
-<strong>Budget</strong><input type="integer" name="budget $" value="">
+
+<%ResultSet rs=null;
+    try{
+Connection con = (Connection) getServletContext().getAttribute("DBConnection");
+Statement stmt = con.createStatement();  
+User user = (User) session.getAttribute("User");
+rs = stmt.executeQuery("SELECT Address,City,State,Zipcode,Country,Telephone,PaymentType FROM user where  email='"+user.getEmail()+"'");
+while(rs.next()){   
+ %>
+<br>
+<strong>Address</strong>:<input type="text" name="Address" value="<%=rs.getString("address")%>"><br>
+<strong>State</strong>:<input type="text" name="State" value="<%=rs.getString("State")%>"><br>
+<strong>Zipcode</strong>:<input type="text" name="Zipcode" value="<%=rs.getString("Zipcode")%>"><br> 
+<strong>Country</strong>:<input type="text" name="Country" value="<%=rs.getString("Country")%>"><br>
+<strong>Telephone</strong>:<input type="text" name="Telephone" value="<%=rs.getString("Telephone")%>">  
+<br>
+<br>
+<strong>Budget</strong>:<input type="integer" name="budget $" value="">
 <br><br>
 
-<strong>Maximum number of workers needed </strong><select name="noe"> <option value="no1">1</option>
+<strong>Maximum number of workers needed </strong>:<select name="noe"> <option value="no1">1</option>
   <option value="no2">2</option>
   <option value="no3">3</option>
     <option value="no4">4</option>
     </select>
 <br>
 <br>
+ <%
+}}catch(Exception e){
+    }
+ %>
 
 <input type="submit" value="Submit">
 
