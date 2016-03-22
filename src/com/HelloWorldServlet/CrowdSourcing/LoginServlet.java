@@ -54,7 +54,7 @@ public class LoginServlet extends HttpServlet {
              
             if(rs != null && rs.next()){
                  
-                User user = new User(rs.getString("FirstName")+" "+rs.getString("LastName"), rs.getString("email"), rs.getString("address"), rs.getInt("idUser"));
+                User user = new User(rs.getString("FirstName")+" "+rs.getString("LastName"), rs.getString("email"), rs.getString("address"), rs.getInt("idUser"),rs.getString("userrole"));
                 logger.info("User found with details="+user);
                 HttpSession session = request.getSession();
                 session.setAttribute("User", user);

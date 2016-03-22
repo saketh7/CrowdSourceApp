@@ -34,6 +34,7 @@
 <br>
 <strong>Your Email</strong>: <%=user.getEmail() %><br>
 <strong>Your Address</strong>: <%=user.getAddress() %><br>
+<strong>Your Role is</strong>: <%=user.getRole() %><br> 
 <br>
 
 <form action="Logout" method="post">

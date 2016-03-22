@@ -10,12 +10,14 @@ public class User implements Serializable{
     private String email;
     private int id;
     private String address;
+    private String role;
      
-    public User(String nm, String em, String address, int i){
+    public User(String nm, String em, String address, int i, String role){
         this.name=nm;
         this.id=i;
         this.address=address;
         this.email=em;
+        this.role = role;
     }
  
     public void setName(String name) {
@@ -53,8 +55,18 @@ public class User implements Serializable{
     public String getAddress() {
         return address;
     }
-     
-    @Override
+ 
+    
+    
+    public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	@Override
     public String toString(){
         return "Name="+this.name+", Email="+this.email+", address="+this.address;
     }
