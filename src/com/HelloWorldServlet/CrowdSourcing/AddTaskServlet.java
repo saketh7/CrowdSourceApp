@@ -26,8 +26,8 @@ public class AddTaskServlet extends HttpServlet {
     static Logger logger = Logger.getLogger(AddTaskServlet.class);
      
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	 String category = request.getParameter("category");
-         String area = request.getParameter("area");
+    	 String category = request.getParameter("categories");
+         String area = request.getParameter("areas");
          String taskDes = request.getParameter("taskdes");
          String startdate = request.getParameter("DateStart");
          String enddate = request.getParameter("DateEnd");
@@ -42,7 +42,7 @@ public class AddTaskServlet extends HttpServlet {
             errorMsg ="User Email can't be null or empty";
         }*/
         if(category == null || category.equals("")){
-            errorMsg = "Password can't be null or empty";
+            errorMsg = "Category can't be null or empty";
         }
          
         if(errorMsg != null){
