@@ -3,6 +3,9 @@ package com.HelloWorld.Modelo;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.concurrent.LinkedBlockingDeque;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -175,6 +178,77 @@ public class TaskWorker {
 		}
 		
 		return 0;
+	}
+
+	public List<TaskWorker> listTaskWorkerByIdUser(HttpServletRequest req, int idUser) {
+
+		ResultSet rs = null;
+		java.sql.PreparedStatement pst = null;
+		List<TaskWorker> list = new LinkedList<TaskWorker>();
+		
+		try {
+
+			Connection con = (Connection) req.getServletContext().getAttribute("DBConnection");
+			if (con == null) {
+				System.out.println("Connection failed!!");
+				return null;
+			}
+			pst = con.prepareStatement("Select * from taskworker where idUser = ? and status != 1");
+			pst.setInt(1, idUser);
+			
+			rs = pst.executeQuery();
+
+			while (rs.next()) {
+				 list.add(TaskWorker.load(rs));
+			}
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pst.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return list;
+	}
+
+	public boolean updateTaskWorker(HttpServletRequest req, TaskWorker taskw) {
+
+		java.sql.PreparedStatement pst = null;
+
+		try {
+
+			Connection con = (Connection) req.getServletContext().getAttribute("DBConnection");
+			if (con == null) {
+				System.out.println("Connection failed!!");
+			}
+			pst = con.prepareStatement("update taskworker set idTask = ?, rate = ?, idUser = ?, Status = ? where idTask = ? and idUser = ? ");
+			pst.setInt(1, taskw.getIdTask());
+			pst.setInt(2, taskw.getRate());
+			pst.setInt(3, taskw.getIdUser());
+			pst.setInt(4, taskw.getStatus());
+			pst.setInt(5, taskw.getIdTask());
+			pst.setInt(6, taskw.getIdUser());
+			
+			pst.executeUpdate();
+
+			return true;
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+				pst.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return false;
 	}
 	
 }

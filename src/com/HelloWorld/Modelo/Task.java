@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 
 import com.HelloWorldServlet.CrowdSourcing.DBConnectionManager;
 
@@ -192,5 +194,109 @@ public class Task {
 		return null;
 	}
 	
+	public List<Task> ListTaskByUserId(HttpServletRequest req, int idUser){
+		
+		ResultSet rs = null;
+		java.sql.PreparedStatement pst = null;
+		List<Task> list = new LinkedList<Task>();
+		
+		try{
+			
+			Connection con = (Connection) req.getServletContext().getAttribute("DBConnection");
+			
+			if(con==null){
+				System.out.println("Connection failed!!");
+			}
+			pst = con.prepareStatement("Select * from task where idUser = ? and now() between DateStart and DateEnd");
+			pst.setInt(1, idUser);
+			rs = pst.executeQuery();
+			
+			while(rs.next()){
+				list.add(Task.load(rs));  
+			}
+			
+		}catch(Exception ex){
+			ex.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pst.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return list;
+	}
+	
+	public List<Task> ListTaskHistoryByUserId(HttpServletRequest req, int idUser){
+		
+		ResultSet rs = null;
+		java.sql.PreparedStatement pst = null;
+		List<Task> list = new LinkedList<Task>();
+		
+		try{
+			
+			Connection con = (Connection) req.getServletContext().getAttribute("DBConnection");
+			
+			if(con==null){
+				System.out.println("Connection failed!!");
+			}
+			pst = con.prepareStatement("Select * from task where idUser = ? and DateStart < now() ");
+			pst.setInt(1, idUser);
+			rs = pst.executeQuery();
+			
+			while(rs.next()){
+				list.add(Task.load(rs));  
+			}
+			
+		}catch(Exception ex){
+			ex.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pst.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return list;
+	}
+	
+	public List<Task> ListTaskByAssigIdUser(HttpServletRequest req, int idUser){
+		
+		ResultSet rs = null;
+		java.sql.PreparedStatement pst = null;
+		List<Task> list = new LinkedList<Task>();
+		
+		try{
+			
+			Connection con = (Connection) req.getServletContext().getAttribute("DBConnection");
+			
+			if(con==null){
+				System.out.println("Connection failed!!");
+			}
+			pst = con.prepareStatement("Select * from task where idTask in(Select idTask from taskworker where idUser = ? and status = 1)");
+			pst.setInt(1, idUser);
+			rs = pst.executeQuery();
+			
+			while(rs.next()){
+				list.add(Task.load(rs));  
+			}
+			
+		}catch(Exception ex){
+			ex.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pst.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return list;
+	}
 	
 }
