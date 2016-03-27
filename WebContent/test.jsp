@@ -28,7 +28,7 @@
       <div class="container">
         <div class="col-md-5">
           <div class="form-group">
-            <div class="input-group date" id="datetimepicker6">
+            <label>first date</label><div class="input-group date" id="datetimepicker6">
               <input type="text" class="form-control"/>
                
               <span class="input-group-addon"> </span>
