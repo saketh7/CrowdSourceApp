@@ -152,7 +152,6 @@
 		</div>
 
 		<p>
-
 		<div class="container">
 
 			<div class="col-md-12">
@@ -213,7 +212,8 @@
 
 		<div class="container">
 			<div class="col-md-12">
-				<input type="submit" class="btn btn-success" value="Assign Worker(s)">
+				<input type="submit" class="btn btn-success"
+					value="Assign Worker(s)">
 			</div>
 		</div>
 

@@ -32,7 +32,7 @@ public class AddTaskServlet extends HttpServlet {
          String startdate = request.getParameter("DateStart");
          String enddate = request.getParameter("DateEnd");
         // String paymentType = request.getParameter("payment");
-         String budget = request.getParameter("budget");
+         double budget = Double.parseDouble(request.getParameter("budget"));
          String noe = request.getParameter("NumMaxWorker");
         HttpSession session = request.getSession();
        
@@ -69,7 +69,7 @@ public class AddTaskServlet extends HttpServlet {
              ps.setString(6, enddate);
    
            //  ps.setString(7, paymentType);
-             ps.setString(7, budget);
+             ps.setDouble(7, budget);
              ps.setString(8, noe);
              ps.execute();
              

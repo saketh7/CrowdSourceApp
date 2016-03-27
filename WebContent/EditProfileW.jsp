@@ -2,7 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@page import="com.HelloWorldServlet.CrowdSourcing.User"%>
 <%@page import="com.HelloWorldServlet.CrowdSourcing.DBConnectionManager"%>
+<%@page import="com.HelloWorld.Modelo.Users"%>
+<%@page import="com.HelloWorld.Modelo.Task"%>
+<%@page import="com.HelloWorld.Modelo.WorkerAreas"%>
+<%@page import="com.HelloWorld.Modelo.ExpertiseAreas"%>
+<%@page import="com.HelloWorld.Modelo.Category"%>
 <%@page import="java.sql.*"%>
+<%@page import="java.util.*"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,8 +17,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" /> -->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
+<!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
+<script type="text/javascript"
+	src="//code.jquery.com/jquery-2.1.1.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <!--   <script src="js/bootstrap.min.js"></script>  -->
 <!-- Latest compiled and minified CSS -->
@@ -20,23 +28,16 @@
 	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
 	crossorigin="anonymous">
 
-<!-- Optional theme -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
-	integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r"
-	crossorigin="anonymous">
-	
-    <link rel="stylesheet" type="text/css" media="screen"
-     href="bootstrap-datetimepicker.css">
+<link rel="stylesheet" type="text/css" media="screen"
+	href="bootstrap-datetimepicker.css">
 <!-- Latest compiled and minified JavaScript -->
- 
+
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
 	integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
 	crossorigin="anonymous"></script>
-	
-	 <script type="text/javascript"
-     src="bootstrap-datetimepicker.js">
+
+<script type="text/javascript" src="bootstrap-datetimepicker.js">
     </script>
 
 <title>Edit Profile Worker</title>
@@ -67,9 +68,10 @@
 		try {
 			Connection con = (Connection) getServletContext().getAttribute("DBConnection");
 			Statement stmt = con.createStatement();
+			Users worker = new Users();
 			User user = (User) session.getAttribute("User");
 			rs = stmt.executeQuery("SELECT * FROM user where  email='" + user.getEmail() + "'");
-
+			worker = worker.getUserById(request, user.getId());
 			while (rs.next()) {
 	%>
 	<div class="container">
@@ -144,8 +146,8 @@
 	</div>
 
 
-	<form action="" class="form-horizontal" method="post" id="second"
-		name="second">
+	<form action="AddWorkerArea" class="form-horizontal" method="post"
+		id="second" name="second">
 		<div class="container">
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="categories">Select
@@ -176,7 +178,7 @@
 				<label class="col-md-4 control-label" for="areas">Select
 					Area:</label>
 				<div class="col-md-4">
-					<select id="areas" class="form-control">
+					<select id="areas" class="form-control" name="areas">
 						<option>Select Area</option>
 					</select>
 				</div>
@@ -208,48 +210,39 @@
 
 				</div>
 			</div>
-			<!-- Text input-->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="textinput">Text
-					Input</label>
-				<div class="col-md-4">
-					<input id="textinput" name="textinput" type="text"
-						placeholder="placeholder" class="form-control input-md"> <span
-						class="help-block">help</span>
+
+
+			<div class="container">
+
+				<div class='col-md-5'>
+					<div class="form-group">
+						<div class='input-group date' id='datetimepicker6'>
+							<input type='text' class="form-control" name='datetimepicker6' />
+							<span class="input-group-addon"> <span
+								class="glyphicon glyphicon-calendar"></span>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class='col-md-5'>
+					<div class="form-group">
+						<div class='input-group date' id='datetimepicker7'>
+							<input type='text' class="form-control" name='datetimepicker7' />
+							<span class="input-group-addon"> <span
+								class="glyphicon glyphicon-calendar"></span>
+							</span>
+						</div>
+					</div>
 				</div>
 			</div>
-
-<div class="container">
-
-    <div class='col-md-5'>
-        <div class="form-group">
-            <div class='input-group date' id='datetimepicker6'>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-        </div>
-    </div>
-    <div class='col-md-5'>
-        <div class="form-group">
-            <div class='input-group date' id='datetimepicker7'>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-        </div>
-    </div>
-</div>
-<script type="text/javascript">
+			<script type="text/javascript">
     $(function () {
         $('#datetimepicker6').datetimepicker({
-        	format:'dd-mm-yyyy'
+        	format:'yyyy-mm-dd'
    		 });
         $('#datetimepicker7').datetimepicker({
             useCurrent: false, //Important! See issue #1075
-            format:'dd-mm-yyyy'
+            format:'yyyy-mm-dd'
         });
         $("#datetimepicker6").on("dp.change", function (e) {
             $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
@@ -259,7 +252,6 @@
         });
     });
 </script>
-			
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="singlebutton"></label>
 				<div class="col-md-4">
@@ -271,6 +263,62 @@
 		</div>
 	</form>
 
+	<div class='container'>
+
+		<h1>Worker Areas</h1>
+
+		<table class="table table-bordered table-responsive">
+			<thead>
+				<tr>
+					<th>No</th>
+					<th>Category</th>
+					<th>Expertise Areas</th>
+					<th>Level</th>
+					<th>Fee</th>
+					<th>Date Start</th>
+					<th>Date End</th>
+				</tr>
+			</thead>
+
+			<tbody>
+
+				<%
+										   WorkerAreas worka_m = new WorkerAreas();
+										   List<WorkerAreas> listA = new LinkedList<WorkerAreas>();
+										   User user = (User) session.getAttribute("User");
+										   listA = worka_m.listWorkerAreasByIdUser(request, user.getId());
+										   Category cat = new Category();
+										   ExpertiseAreas exp = new ExpertiseAreas();
+										   int i = 0;
+											
+												if (listA.size() > 0) {
+													for (WorkerAreas a : listA) {
+														i++;
+				  										cat = cat.getCategoryById(request, a.getIdCategorie());
+														exp = exp.getExpertiseAreaByIdCatIdExp(request, a.getIdExpertiseAreas(), a.getIdCategorie());
+										%>
+				<tr>
+					<td><%=i%></td>
+					<td><%=cat.getDescripcion()%></td>
+					<td><%=exp.getDescripcion()%></td>
+					<td><%=a.getLevel()==1?"Beginner":(a.getLevel()==2?"Skilled":(a.getLevel()==3?"Intermediate":(a.getLevel()==4?"Experienced":(a.getLevel()==5?"Advanced":"Expert"))))%></td>
+					<td><%=a.getFee()%></td>
+					<td><%=a.getDateStartAvail()%></td>
+					<td><%=a.getDateEndAvail()%></td>
+				</tr>
+
+			</tbody>
+			<%
+										}
+											} else {
+									%>
+			<td colspan="7" align="center">No Results</td>
+			<%
+										}
+									%>
+		</table>
+
+	</div>
 
 </body>
 </html>

@@ -83,10 +83,11 @@
 						<div class="collapse navbar-collapse"
 							id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav">
-								<li class="active"><a href="home.jsp"><i class="fa fa-home fa-fw"></i> Home <span
-										class="sr-only">(current)</span></a></li>
+								<li class="active"><a href="home.jsp"><i
+										class="fa fa-home fa-fw"></i> Home <span class="sr-only">(current)</span></a></li>
 								<%if(user.getRole().equals("1")){ %>
-									<li><a href="#" onclick="navegate('AddTask.jsp')"><i class="fa fa-briefcase fa-fw"></i> Add Task</a></li>
+								<li><a href="#" onclick="navegate('AddTask.jsp')"><i
+										class="fa fa-briefcase fa-fw"></i> Add Task</a></li>
 								<%} %>
 							</ul>
 						</div>
@@ -110,13 +111,13 @@
 									<li>
 										<div class="profile-info">
 											<div class="btn-group margin-bottom-2x" role="group">
-												<a href="#" onclick="navegate('<%=user.getRole().equals("1")?"EditProfile.jsp":"EditProfileW.jsp" %>')"><i class="fa fa-user"></i>
-													Profile</a>
-													<br> 
-													<form method="post" name="frmLogout" action="Logout">
-														<a href="#" onclick="document.frmLogout.submit();"><i
+												<a href="#"
+													onclick="navegate('<%=user.getRole().equals("1")?"EditProfile.jsp":"EditProfileW.jsp" %>')"><i
+													class="fa fa-user"></i> Profile</a> <br>
+												<form method="post" name="frmLogout" action="Logout">
+													<a href="#" onclick="document.frmLogout.submit();"><i
 														class="fa fa-sign-out"></i> Logout</a>
-													</form>
+												</form>
 											</div>
 										</div>
 									</li>
@@ -134,11 +135,13 @@
 
 	<div class="container-fluid">
 		<div class="row">
-			<iframe src="principal.jsp" frameborder="0" width="100%" height="1200px" ></iframe>
+			<iframe src="principal.jsp" frameborder="0" width="100%"
+				height="1200px"></iframe>
 		</div>
 	</div>
 
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script
+		src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 
 </body>

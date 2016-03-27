@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=US-ASCII" pageEncoding="US-ASCII"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@page import="com.HelloWorldServlet.CrowdSourcing.User"%>
 <%@page import="com.HelloWorldServlet.CrowdSourcing.DBConnectionManager"%>
 <%@page import="java.sql.*"%>
@@ -25,20 +26,22 @@
 	integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r"
 	crossorigin="anonymous">
 	
-  
+  	
+ <link rel="stylesheet" type="text/css" media="screen"
+     href="bootstrap-datetimepicker.css">	
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
 	integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
 	crossorigin="anonymous"></script>
+
 	
 <script type="text/javascript"
      src="bootstrap-datetimepicker.js">
     </script>
 <meta charset="US-ASCII">
 <title>Login Page1</title>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script>
 
+<script>
 $(document).ready(function() {
 	$('#categories').change(function(event) { 
 		var $cat=$("select#categories").val();
@@ -103,12 +106,12 @@ $(document).ready(function() {
 
 <br>
 <br>
-<!-- 
+
 <div class="container">
 
     <div class='col-md-5'>
         <div class="form-group">
-            <div class='input-group date' id='datetimepicker6'>
+            <div class='input-group date' id='datetimepicker6' >
                 <input type='text' class="form-control" />
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
@@ -130,21 +133,23 @@ $(document).ready(function() {
 <script type="text/javascript">
     $(function () {
         $('#datetimepicker6').datetimepicker({
-        	format:'dd-mm-yyyy'
+        	format:'yyyy-mm-dd'
    		 });
         $('#datetimepicker7').datetimepicker({
             useCurrent: false, //Important! See issue #1075
-            format:'dd-mm-yyyy'
+            format:'yyyy-mm-dd'
         });
         $("#datetimepicker6").on("dp.change", function (e) {
             $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
         });
         $("#datetimepicker7").on("dp.change", function (e) {
             $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+          
         });
+        
     });
 </script>
-	 -->
+	 
 			
 <strong>Start Date</strong>   :<input type="text" name="DateStart" value="YYYY-MM-DD"><br>
 <br>
@@ -198,23 +203,15 @@ while(rs.next()){
 					</div>
 				<div class="row-xs-3">
 					<div class="form-group">
-						<label>Budget:</label><input type="integer" name="budget $"
+						<label>Budget:</label><input type="integer" name="budget"
 							class="form-control">
 					</div>
-<div class="form-group">
-				<label class="row-md-4 control-label" for="level">Maximum Number of Workers</label>
-				<div class="row-md-4">
-					<select id="level" name="level" class="form-control">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-						<option value="6">6</option>
-					</select>
-				</div>
-			</div>
-
+					<div class="row-xs-3">
+					<div class="form-group">
+						<label>Number of Workers:</label><input type="integer" name="NumMaxWorker"
+							class="form-control">
+ 
+ <br>
  <%
 }}catch(Exception e){
     }

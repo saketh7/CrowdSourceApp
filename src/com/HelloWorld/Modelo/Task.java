@@ -242,7 +242,7 @@ public class Task {
 			if(con==null){
 				System.out.println("Connection failed!!");
 			}
-			pst = con.prepareStatement("Select * from task where idUser = ? and DateStart < now() ");
+			pst = con.prepareStatement("Select * from task where idUser = ? and DateEnd < now() ");
 			pst.setInt(1, idUser);
 			rs = pst.executeQuery();
 			

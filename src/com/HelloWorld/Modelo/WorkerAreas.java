@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -141,5 +143,44 @@ public class WorkerAreas {
 		
 		return null;
 	}
+	
+	
+	public List<WorkerAreas> listWorkerAreasByIdUser(HttpServletRequest req, int idUser) {
+
+		ResultSet rs = null;
+		java.sql.PreparedStatement pst = null;
+		List<WorkerAreas> list = new LinkedList<WorkerAreas>();
+		
+		try {
+
+			Connection con = (Connection) req.getServletContext().getAttribute("DBConnection");
+			if (con == null) {
+				System.out.println("Connection failed!!");
+				return null;
+			}
+			pst = con.prepareStatement("Select * from workerareas where idUser = ? ");
+			pst.setInt(1, idUser);
+			
+			rs = pst.executeQuery();
+
+			while (rs.next()) {
+				 list.add(WorkerAreas.load(rs));
+			}
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pst.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return list;
+	}
+	
+	
 	
 }

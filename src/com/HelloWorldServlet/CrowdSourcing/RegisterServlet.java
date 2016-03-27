@@ -29,7 +29,7 @@ public class RegisterServlet extends HttpServlet {
         String PaymentType = request.getParameter("PaymentType");
         String CardNumber = request.getParameter("CardNumber");
         String CardHolderName = request.getParameter("CardHolderName");
-        String ExpiryDate = request.getParameter("ExpiryDate");
+        String ExpiryDate = request.getParameter("ExpiryDate")+"-01";
         
         
         String errorMsg = null;

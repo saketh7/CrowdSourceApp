@@ -119,9 +119,9 @@
  	}
  %>
 							</a></li>
-							<li><a role="tab" aria-controls="taskhistory" href="#taskhistory"
-								data-toggle="tab"> <i class="fa fa-history"></i> Task
-									History
+							<li><a role="tab" aria-controls="taskhistory"
+								href="#taskhistory" data-toggle="tab"> <i
+									class="fa fa-history"></i> Task History
 							</a></li>
 
 							<%
@@ -183,7 +183,8 @@
 														cat = cat.getCategoryById(request, t.getIdCategorie());
 														exp = exp.getExpertiseAreaByIdCatIdExp(request, t.getIdExpertiseAreas(), t.getIdCategorie());
 										%>
-										<tr onclick="document.location.href = 'AssignTask.jsp?idTask=<%=t.getIdTask() %>'">
+										<tr style="cursor: pointer;"
+											onclick="document.location.href = 'AssignTask.jsp?idTask=<%=t.getIdTask() %>'">
 											<td><%=i%></td>
 											<td><%=cat.getDescripcion()%></td>
 											<td><%=exp.getDescripcion()%></td>
@@ -317,7 +318,8 @@
 														cat = cat.getCategoryById(request, t.getIdCategorie());
 														exp = exp.getExpertiseAreaByIdCatIdExp(request, t.getIdExpertiseAreas(), t.getIdCategorie());
 										%>
-										<tr onclick="document.location.href = 'AssignTask.jsp?idTask=<%=t.getIdTask() %>'">
+										<tr
+											onclick="document.location.href = 'AssignTask.jsp?idTask=<%=t.getIdTask() %>'">
 											<td><%=i%></td>
 											<td><%=cat.getDescripcion()%></td>
 											<td><%=exp.getDescripcion()%></td>
@@ -401,17 +403,17 @@
 								%>
 
 							</div>
-							
+
 							<div class="tab-pane edit-tab" id="rating">
 								<div class="teb-icon-edit">
 									<i class="fa fa-history"></i>
 								</div>
 								<h1>Task List History</h1>
-								
+
 								here your code
-							
+
 							</div>
-							
+
 						</div>
 					</div>
 				</div>

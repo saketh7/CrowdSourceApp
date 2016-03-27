@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-    <%@page import="com.HelloWorldServlet.CrowdSourcing.DBConnectionManager"%>
-    <%@page import="java.sql.*"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@page import="com.HelloWorldServlet.CrowdSourcing.DBConnectionManager"%>
+<%@page import="java.sql.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,10 +25,10 @@
 </script>
 </head>
 <body>
-Select Category:
-<select id="categories">
-<option>Select Category</option>
-<%ResultSet rs=null;
+	Select Category:
+	<select id="categories">
+		<option>Select Category</option>
+		<%ResultSet rs=null;
     try{
 Connection con = (Connection) getServletContext().getAttribute("DBConnection");
 Statement stmt = con.createStatement();  
@@ -36,20 +37,15 @@ rs = stmt.executeQuery("SELECT * FROM category order by idCategories");
 
 while(rs.next()){
  %>
-  <option value="<%=rs.getString(1)%>"><%=rs.getString(2)%></option>  
-  <%
+		<option value="<%=rs.getString(1)%>"><%=rs.getString(2)%></option>
+		<%
 }}catch(Exception e){
     }
  %>
 
-</select>
- 
- 
- 
- 
-Select Area:
-<select id="areas">
-<option>Select Area</option>
-</select>
+	</select>         Select Area:
+	<select id="areas">
+		<option>Select Area</option>
+	</select>
 </body>
 </html>

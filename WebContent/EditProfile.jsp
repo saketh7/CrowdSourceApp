@@ -117,6 +117,45 @@ while(rs.next()){
 							class="form-control" value="<%=rs.getString("Telephone")%>">
 					</div>
 					<br>
+					</div>
+					<div class="row-xs-3">
+					<div class="form-group">
+						<label>Edit Payment Details</label>
+						
+					</div>
+				</div>	
+ 
+  <ul class="nav nav-tabs ">
+    <li><a data-toggle="tab" href="#VISA">VISA</a></li>
+    <li><a data-toggle="tab" href="#MASTERCARD">MASTERCARD</a></li>
+    <li><a data-toggle="tab" href="#PAYPAL"><img alt="img/paypal.png" src="img/paypal.png"></a></li>
+  </ul>
+ <div class="tab-content">
+    <div id="VISA" class="tab-pane fade">
+     <div class="form-group"><strong> Card Type:</strong></div> <input type="text" Value="VISA"  name="PaymentType" class="form-control"></input>
+     <br>
+    	<strong>Card Number</strong>:<input type="text" name="CardNumber" class="form-control" value="<%=rs.getString("CardNumber")%>"><br>
+		<strong>Card Holder Name</strong>:<input type="text" name="CardHolderName" class="form-control" value="<%=rs.getString("CardHolderName")%>"><br>
+		<strong>Expiry Date</strong>:<input type="text" name="ExpiryDate" class="form-control" value="<%=rs.getString("ExpiryDate")%>"><br>
+    
+    
+    </div>
+    <div id="MASTERCARD" class="tab-pane fade">
+<div class="form-group"><strong> Card Type:</strong></div> <input type="text" Value="MASTERCARD" name="PaymentType" class="form-control"></input>
+     <br>
+      <strong>Card Number</strong>:<input type="text" name="CardNumber" class="form-control"  value="<%=rs.getString("CardNumber")%>"><br>
+		<strong>Card Holder Name</strong>:<input type="text" name="CardHolderName" class="form-control"   value="<%=rs.getString("CardHolderName")%>"><br>
+		<strong>Expiry Date</strong>:<input type="text" name="ExpiryDate" class="form-control"  value="<%=rs.getString("ExpiryDate")%>"><br></div>
+    <div id="PAYPAL" class="tab-pane fade">
+      <h3>Paypal</h3>
+      <strong>E-mail</strong>:<input type="text" name="CardNumber" class="form-control"><br>
+		<strong>Password</strong>:<input type="text" name="CardHolderName" class="form-control"><br>
+		<input type="submit" value="Login">
+     <br>
+     <br>
+      </div>
+    
+  </div>
   <%
 }}catch(Exception e){
     }
