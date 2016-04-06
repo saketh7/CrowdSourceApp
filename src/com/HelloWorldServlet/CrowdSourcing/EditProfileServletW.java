@@ -76,7 +76,7 @@ public class EditProfileServletW extends HttpServlet {
              //forward to login page to login
              RequestDispatcher rd = getServletContext().getRequestDispatcher("/EditProfileW.jsp");
              PrintWriter out= response.getWriter();
-             out.println("<font color=green>Saved successful, please login below.</font>");
+             out.println("<font color=green>Profile edited successfuly.</font>");
              rd.include(request, response);
             
         } catch (SQLException e) {

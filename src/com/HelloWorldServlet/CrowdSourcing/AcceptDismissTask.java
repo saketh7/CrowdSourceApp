@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.HelloWorld.Modelo.Task;
 import com.HelloWorld.Modelo.TaskWorker;
+import com.HelloWorld.Modelo.WorkerAreas;
 
 /**
  * Servlet implementation class AcceptDismissTask
@@ -43,14 +44,21 @@ public class AcceptDismissTask extends HttpServlet {
 			int option = Integer.parseInt(request.getParameter("option"));
 
 			TaskWorker taskw = new TaskWorker();
+			TaskWorker taskw_m = new TaskWorker();
 			Task task = new Task();
+			Task task_m = new Task();
+			WorkerAreas wa = new WorkerAreas();
 
-			task = task.getTaskyId(request, idTask);
+			task = task_m.getTaskyId(request, idTask);
 
 			if (task != null) {
 
-				taskw = taskw.getTaskWorkerByIdTaskIdUserStatus(request, idTask, idUser, 1);
-
+				if(option!=3){
+					taskw = taskw_m.getTaskWorkerByIdTaskIdUserStatus(request, idTask, idUser, 1);
+				}else{
+					taskw = taskw_m.getTaskWorkerByIdTaskIdUserStatus(request, idTask, idUser, 2);
+				}
+				
 				if (taskw != null) {
 
 					switch (option) {
@@ -64,6 +72,16 @@ public class AcceptDismissTask extends HttpServlet {
 
 						taskw.setStatus(3);
 						taskw.updateTaskWorker(request, taskw);
+						out.print("<script>alert('Successful'); parent.document.location.href='home.jsp';</script>");
+						break;
+						
+					case 3: // Rate Worker
+
+						taskw.setRate(Double.parseDouble(request.getParameter("rate"))/5);
+						taskw.setStatus(4);
+						taskw.updateTaskWorker(request, taskw);
+						WorkerAreas worka = wa.getWorkerAreasByUserExperience(request, taskw.getIdUser(), Integer.parseInt(request.getParameter("idCat")), Integer.parseInt(request.getParameter("idExp")));
+						worka.CalculateCredibility(request,  taskw.getIdUser(), Integer.parseInt(request.getParameter("idCat")), Integer.parseInt(request.getParameter("idExp")));
 						out.print("<script>alert('Successful'); parent.document.location.href='home.jsp';</script>");
 						break;
 					}

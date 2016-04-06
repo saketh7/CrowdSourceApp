@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 public class TaskWorker {
 	
 	private int idTask;
-	private int rate;
+	private double rate;
 	private int idUser;
 	private int status;
 	private transient Connection con;
@@ -29,8 +29,7 @@ public class TaskWorker {
 		
 	}
 
-	public TaskWorker(int idTask, int rate, int idUser, int status) {
-		super();
+	public TaskWorker(int idTask, double rate, int idUser, int status) {
 		this.idTask = idTask;
 		this.rate = rate;
 		this.idUser = idUser;
@@ -45,11 +44,11 @@ public class TaskWorker {
 		this.idTask = idTask;
 	}
 
-	public int getRate() {
+	public double getRate() {
 		return rate;
 	}
 
-	public void setRate(int rate) {
+	public void setRate(double rate) {
 		this.rate = rate;
 	}
 
@@ -72,7 +71,7 @@ public class TaskWorker {
 	protected static TaskWorker load(ResultSet rs)throws SQLException{
 		TaskWorker taskw = new TaskWorker();
 		taskw.setIdTask(rs.getInt(1));
-		taskw.setRate(rs.getInt(2));
+		taskw.setRate(rs.getDouble(2));
 		taskw.setIdUser(rs.getInt(3));
 		taskw.setStatus(rs.getInt(4));
                 
@@ -91,7 +90,7 @@ public class TaskWorker {
 			}
 			pst = con.prepareStatement("Insert into taskworker values (?,?,?,?) ");
 			pst.setInt(1, task.getIdTask());
-			pst.setInt(2, task.getRate());
+			pst.setDouble(2, task.getRate());
 			pst.setInt(3, task.getIdUser());
 			pst.setInt(4, task.getStatus());
 			pst.execute();
@@ -216,6 +215,44 @@ public class TaskWorker {
 		return list;
 	}
 
+	
+	
+	public List<TaskWorker> listTaskWorkerByClient(HttpServletRequest req, int idUser) {
+
+		ResultSet rs = null;
+		java.sql.PreparedStatement pst = null;
+		List<TaskWorker> list = new LinkedList<TaskWorker>();
+		
+		try {
+
+			Connection con = (Connection) req.getServletContext().getAttribute("DBConnection");
+			if (con == null) {
+				System.out.println("Connection failed!!");
+				return null;
+			}
+			pst = con.prepareStatement("select  k.IdTask,Rate,k.IdUser,Status from task t inner join  taskworker k where t.IdTask = k.IdTask and t.idUser = ? and status= 2");
+			pst.setInt(1, idUser);
+			
+			rs = pst.executeQuery();
+
+			while (rs.next()) {
+				 list.add(TaskWorker.load(rs));
+			}
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pst.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return list;
+	}
+	
 	public boolean updateTaskWorker(HttpServletRequest req, TaskWorker taskw) {
 
 		java.sql.PreparedStatement pst = null;
@@ -225,17 +262,17 @@ public class TaskWorker {
 			Connection con = (Connection) req.getServletContext().getAttribute("DBConnection");
 			if (con == null) {
 				System.out.println("Connection failed!!");
+				return false;
 			}
-			pst = con.prepareStatement("update taskworker set idTask = ?, rate = ?, idUser = ?, Status = ? where idTask = ? and idUser = ? ");
-			pst.setInt(1, taskw.getIdTask());
-			pst.setInt(2, taskw.getRate());
-			pst.setInt(3, taskw.getIdUser());
-			pst.setInt(4, taskw.getStatus());
-			pst.setInt(5, taskw.getIdTask());
-			pst.setInt(6, taskw.getIdUser());
+			pst = con.prepareStatement("update taskworker set rate = ?, idUser = ?, Status = ? where idTask = ? and idUser = ? ");
+			pst.setDouble(1, taskw.getRate());
+			pst.setInt(2, taskw.getIdUser());
+			pst.setInt(3, taskw.getStatus());
+			pst.setInt(4, taskw.getIdTask());
+			pst.setInt(5, taskw.getIdUser());
 			
-			pst.executeUpdate();
-
+			pst.execute();
+			con.commit();
 			return true;
 
 		} catch (Exception ex) {

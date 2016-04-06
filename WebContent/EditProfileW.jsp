@@ -18,11 +18,11 @@
 <!-- <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" /> -->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
-<script type="text/javascript"
+<!-- <script type="text/javascript"
 	src="//code.jquery.com/jquery-2.1.1.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<!--   <script src="js/bootstrap.min.js"></script>  -->
-<!-- Latest compiled and minified CSS -->
+Include all compiled plugins (below), or include individual files as needed
+  <script src="js/bootstrap.min.js"></script> 
+Latest compiled and minified CSS
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
 	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
@@ -30,15 +30,36 @@
 
 <link rel="stylesheet" type="text/css" media="screen"
 	href="bootstrap-datetimepicker.css">
-<!-- Latest compiled and minified JavaScript -->
+Latest compiled and minified JavaScript
 
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
 	integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
 	crossorigin="anonymous"></script>
 
-<script type="text/javascript" src="bootstrap-datetimepicker.js">
-    </script>
+<script type="text/javascript" src="bootstrap-datetimepicker.js"></script> -->
+
+ <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
+            rel="stylesheet" type="text/css" media="screen"></link>
+      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+            rel="stylesheet"></link>
+      <link href="./css/prettify-1.0.css" rel="stylesheet"></link>
+      <link href="./css/base.css" rel="stylesheet"></link>
+      <link href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css"
+            rel="stylesheet"></link>
+            
+      <script src="//www.google-analytics.com/analytics.js" async=""></script>
+      <script src="//code.jquery.com/jquery-2.1.1.min.js"
+              type="text/javascript"></script>
+      <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"
+              type="text/javascript"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+      <script src="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
+    
+
+
+
+
 
 <title>Edit Profile Worker</title>
 
@@ -144,15 +165,15 @@
 	<div class="container">
 		<h3 class=".h3">Expertise Areas</h3>
 	</div>
-
+	<div class="container">
 
 	<form action="AddWorkerArea" class="form-horizontal" method="post"
 		id="second" name="second">
 		<div class="container">
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="categories">Select
+				<label class="col-md-2 control-label" for="categories">Select
 					Categories:</label>
-				<div class="col-md-4">
+				<div class="col-md-2">
 
 					<select id="categories" name="categories" class="form-control">
 						<option>Select Category</option>
@@ -175,9 +196,9 @@
 			</div>
 
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="areas">Select
+				<label class="col-md-2 control-label" for="areas">Select
 					Area:</label>
-				<div class="col-md-4">
+				<div class="col-md-2">
 					<select id="areas" class="form-control" name="areas">
 						<option>Select Area</option>
 					</select>
@@ -186,8 +207,8 @@
 
 			<!-- Select Basic -->
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="level">Level</label>
-				<div class="col-md-4">
+				<label class="col-md-2 control-label" for="level">Level</label>
+				<div class="col-md-2">
 					<select id="level" name="level" class="form-control">
 						<option value="1">Beginner</option>
 						<option value="2">Skilled</option>
@@ -201,7 +222,7 @@
 
 			<!-- Appended Input-->
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="fee">Fee</label>
+				<label class="col-md-2 control-label" for="fee">Fee</label>
 				<div class="col-md-2">
 					<div class="input-group">
 						<input id="fee" name="fee" class="form-control" placeholder="fee"
@@ -212,20 +233,26 @@
 			</div>
 
 
-			<div class="container">
+		 
 
-				<div class='col-md-5'>
-					<div class="form-group">
-						<div class='input-group date' id='datetimepicker6'>
-							<input type='text' class="form-control" name='datetimepicker6' />
-							<span class="input-group-addon"> <span
-								class="glyphicon glyphicon-calendar"></span>
-							</span>
+
+				<div class="form-group">
+					<label class="col-md-2 control-label" for="datetimepicker6">Start
+						Date</label>
+					<div class="col-md-2">
+						<div class="input-group">
+							<div class='input-group date' id='datetimepicker6'>
+								<input type='text' class="form-control" name='datetimepicker6' />
+								<span class="input-group-addon"> <span
+									class="glyphicon glyphicon-calendar"></span>
+								</span>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class='col-md-5'>
-					<div class="form-group">
+				<div class="form-group">
+					<label class="col-md-2 control-label" for="datetimepicker6">End	Date</label>
+					<div class="col-md-2">
 						<div class='input-group date' id='datetimepicker7'>
 							<input type='text' class="form-control" name='datetimepicker7' />
 							<span class="input-group-addon"> <span
@@ -233,28 +260,30 @@
 							</span>
 						</div>
 					</div>
+
 				</div>
-			</div>
+		 
 			<script type="text/javascript">
-    $(function () {
-        $('#datetimepicker6').datetimepicker({
-        	format:'yyyy-mm-dd'
-   		 });
-        $('#datetimepicker7').datetimepicker({
-            useCurrent: false, //Important! See issue #1075
-            format:'yyyy-mm-dd'
+        $(function () {
+            $('#datetimepicker6').datetimepicker({
+            	format:'YYYY-MM-DD'
+            });
+            $('#datetimepicker7').datetimepicker( {
+                useCurrent : false,//Important! See issue #1075
+                format:'YYYY-MM-DD'
+            });
+            $("#datetimepicker6").on("dp.change", function (e) {
+                $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+            });
+            $("#datetimepicker7").on("dp.change", function (e) {
+                $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+            });
         });
-        $("#datetimepicker6").on("dp.change", function (e) {
-            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
-        });
-        $("#datetimepicker7").on("dp.change", function (e) {
-            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
-        });
-    });
-</script>
+      </script>
+	
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="singlebutton"></label>
-				<div class="col-md-4">
+				<label class="col-md-2 control-label" for="singlebutton"></label>
+				<div class="col-md-2">
 					<button id="singlebutton" type="submit" name="singlebutton"
 						class="btn btn-success">Add</button>
 				</div>
@@ -262,14 +291,14 @@
 
 		</div>
 	</form>
-
+</div>
 	<div class='container'>
 
-		<h1>Worker Areas</h1>
+		<h3 class=".h3">Worker Areas</h3>
 
 		<table class="table table-bordered table-responsive">
 			<thead>
-				<tr>
+				<tr align="center">
 					<th>No</th>
 					<th>Category</th>
 					<th>Expertise Areas</th>
@@ -277,6 +306,7 @@
 					<th>Fee</th>
 					<th>Date Start</th>
 					<th>Date End</th>
+					<th>Credibility</th>
 				</tr>
 			</thead>
 
@@ -298,13 +328,14 @@
 														exp = exp.getExpertiseAreaByIdCatIdExp(request, a.getIdExpertiseAreas(), a.getIdCategorie());
 										%>
 				<tr>
-					<td><%=i%></td>
-					<td><%=cat.getDescripcion()%></td>
-					<td><%=exp.getDescripcion()%></td>
-					<td><%=a.getLevel()==1?"Beginner":(a.getLevel()==2?"Skilled":(a.getLevel()==3?"Intermediate":(a.getLevel()==4?"Experienced":(a.getLevel()==5?"Advanced":"Expert"))))%></td>
-					<td><%=a.getFee()%></td>
-					<td><%=a.getDateStartAvail()%></td>
-					<td><%=a.getDateEndAvail()%></td>
+					<td align="center"><%=i%></td>
+					<td align="center"><%=cat.getDescripcion()%></td>
+					<td align="center"><%=exp.getDescripcion()%></td>
+					<td align="center"><%=a.getLevel()==1?"Beginner":(a.getLevel()==2?"Skilled":(a.getLevel()==3?"Intermediate":(a.getLevel()==4?"Experienced":(a.getLevel()==5?"Advanced":"Expert"))))%></td>
+					<td align="center"><%=a.getFee()%></td>
+					<td align="center"><%=a.getDateStartAvail()%></td>
+					<td align="center"><%=a.getDateEndAvail()%></td>
+					<td align="center"><%=a.getCredibility()%></td>
 				</tr>
 
 			</tbody>
@@ -312,7 +343,7 @@
 										}
 											} else {
 									%>
-			<td colspan="7" align="center">No Results</td>
+			<td colspan="8" align="center">No Results</td>
 			<%
 										}
 									%>

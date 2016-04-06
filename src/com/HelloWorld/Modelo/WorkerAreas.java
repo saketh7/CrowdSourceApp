@@ -109,7 +109,7 @@ public class WorkerAreas {
 		workareas.setFee(rs.getInt(5));
 		workareas.setDateStartAvail(rs.getDate(6));
 		workareas.setDateEndAvail(rs.getDate(7));
-		workareas.setCredibility(rs.getInt(8));
+		workareas.setCredibility(rs.getDouble(8));
 		
     	return workareas;
     }
@@ -144,6 +144,45 @@ public class WorkerAreas {
 		return null;
 	}
 	
+	
+public boolean CalculateCredibility(HttpServletRequest req, int idUser, int idCategorie, int idExpertiseAreas){
+		
+		try{
+			
+			
+			java.sql.PreparedStatement pst = null;
+			
+			Connection con = (Connection) req.getServletContext().getAttribute("DBConnection");
+			if(con==null){
+				System.out.println("Connection failed!!");
+				return false;
+			}
+			con.setAutoCommit(false);
+			pst = con.prepareStatement("update workerareas set Credibility = (select avg(rate)  from task t inner join taskworker k "+
+									  " on t.idTask = k.idTask "+
+									  "	where t.idCategorie = ? "+
+									  " and t.idExpertiseAreas = ? "+ 
+									  "	and k.idUser = ? "+
+									  "	and k.status = 4) where IdUser=? and idCategorie = ? and idExpertiseAreas = ? ");
+			pst.setInt(1, idCategorie);
+			pst.setInt(2, idExpertiseAreas);
+			pst.setInt(3, idUser);
+			pst.setInt(4, idUser);
+			pst.setInt(5, idCategorie);
+			pst.setInt(6, idExpertiseAreas);
+			pst.execute();
+	
+			con.commit();
+			
+			return true;
+			
+			
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+		
+		return false;
+	}
 	
 	public List<WorkerAreas> listWorkerAreasByIdUser(HttpServletRequest req, int idUser) {
 

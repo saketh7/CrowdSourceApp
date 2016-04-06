@@ -27,9 +27,15 @@ public class RegisterServlet extends HttpServlet {
         String Lname = request.getParameter("lname");
         String Address = request.getParameter("address");
         String PaymentType = request.getParameter("PaymentType");
-        String CardNumber = request.getParameter("CardNumber");
-        String CardHolderName = request.getParameter("CardHolderName");
-        String ExpiryDate = request.getParameter("ExpiryDate")+"-01";
+        String CardNumber = request.getParameter("CardNumberV");
+        String CardHolderName = request.getParameter("CardHolderNameV");
+        String CardNumberM = request.getParameter("CardNumberM");
+        String CardHolderNameM = request.getParameter("CardHolderNameM");
+        String ExpiryDateV = request.getParameter("ExpiryDateV")+"-01";
+        String ExpiryDateM= request.getParameter("ExpiryDateM")+"-01";
+        String Payment=request.getParameter("payment");
+        String EmailP=request.getParameter("EmailP");
+        String PassP=request.getParameter("PassP");
         
         
         String errorMsg = null;
@@ -51,26 +57,50 @@ public class RegisterServlet extends HttpServlet {
         if(PaymentType == null || PaymentType.equals("")){
             errorMsg = "PaymentType can't be null or empty.";
         }
-        if(CardHolderName == null || CardHolderName.equals("")){
-            errorMsg = "CardHolderName can't be null or empty.";
+        
+      if (UserRole.equals("1")){
+        
+        if (Payment.equals("VISA")){
+			
+			if(CardHolderName == null || CardHolderName.equals("")){
+				errorMsg = "CardHolderName can't be null or empty.";
+			}
+			if(CardNumber == null || CardNumber.equals("")){
+				errorMsg = "CardNumber can't be null or empty.";
+			}
+			
+			 if(ExpiryDateV == null || ExpiryDateV.equals("")){
+		            errorMsg = "Expiry Date can't be null or empty.";
+		        }
+		       
+			
+        }else if (Payment.equals("MASTERCARD")){
+        	if(CardHolderNameM == null || CardHolderNameM.equals("")){
+				errorMsg = "CardHolderName can't be null or empty.";
+			}
+			if(CardNumberM == null || CardNumberM.equals("")){
+				errorMsg = "CardNumber can't be null or empty.";
+			}
+        	
+			 if(ExpiryDateM == null || ExpiryDateM.equals("")){
+		            errorMsg = "Expiry Date can't be null or empty.";
+		        }
+		       
+        }else if (Payment.equals("PAYPAL")){
+        	 ExpiryDateV = "2016-04-01";
+        	 if(EmailP == null || EmailP.equals("")){
+                 errorMsg = "Paypal Email ID can't be null or empty.";
+             }
+        	  if(PassP == null || PassP.equals("")){
+                  errorMsg = "Paypal Password can't be null or empty.";
+              }
         }
-        if(CardNumber == null || CardNumber.equals("")){
-            errorMsg = "CardNumber can't be null or empty.";
-        }
-        if(ExpiryDate == null || ExpiryDate.equals("")){
-            errorMsg = "Expiry Date can't be null or empty.";
-        }
-       
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+			
+      }else{
+    	  ExpiryDateV = "2016-04-01"; 
+    	  
+      }
+			
         
         if(errorMsg != null){
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/register.html");
@@ -91,11 +121,41 @@ public class RegisterServlet extends HttpServlet {
             ps.setString(5, Address);
             ps.setString(6, email);
             
-            ps.setString(7, PaymentType);
-            ps.setString(8, CardNumber);
-            ps.setString(9, CardHolderName);
-            ps.setString(10, ExpiryDate);
+            if (UserRole.equals("1")){  
+            if (Payment.equals("VISA")){
+    			
+                ps.setString(7, Payment);
+                ps.setString(8, CardNumber);
+                ps.setString(9, CardHolderName);
+                ps.setString(10, ExpiryDateV);
+    		       
+    			
+            }else if (Payment.equals("MASTERCARD")){
             
+                ps.setString(7, Payment);
+                ps.setString(8, CardNumberM);
+                ps.setString(9, CardHolderNameM);
+                ps.setString(10, ExpiryDateM);
+    		       
+            }else if (Payment.equals("PAYPAL")){
+            	
+                ps.setString(7, Payment);
+                ps.setString(8, EmailP);
+                ps.setString(9, PassP);
+                ps.setString(10, ExpiryDateV);
+            	
+            }
+            }else{
+                ps.setString(7, Payment);
+                ps.setString(8, CardNumber);
+                ps.setString(9, CardHolderName);
+                ps.setString(10, ExpiryDateV);
+    		       
+            	
+            }	
+        
+            
+         
             
             
             

@@ -39,7 +39,7 @@ public class LoginServlet extends HttpServlet {
         if(errorMsg != null){
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.html");
             PrintWriter out= response.getWriter();
-            out.println("<font color=red>"+errorMsg+"</font>");
+            out.println("<div class='container'><font color=red>"+errorMsg+"</font></div>");
             rd.include(request, response);
         }else{
          
@@ -63,7 +63,7 @@ public class LoginServlet extends HttpServlet {
                 RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.html");
                 PrintWriter out= response.getWriter();
                 logger.error("User not found with email="+email);
-                out.println("<font color=red>No user found with given email id, please register first.</font>");
+                out.println("<div class='container'><font color=red>No user found with given email id, please register first.</font></div>");
                 rd.include(request, response);
             }
         } catch (SQLException e) {

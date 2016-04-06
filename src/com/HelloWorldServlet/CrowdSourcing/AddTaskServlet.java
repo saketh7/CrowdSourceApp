@@ -34,7 +34,8 @@ public class AddTaskServlet extends HttpServlet {
         // String paymentType = request.getParameter("payment");
          double budget = Double.parseDouble(request.getParameter("budget"));
          String noe = request.getParameter("NumMaxWorker");
-        HttpSession session = request.getSession();
+         String idtask = "";//request.getParameter("idTask");
+         HttpSession session = request.getSession();
        
        
         String errorMsg = null;
@@ -54,13 +55,13 @@ public class AddTaskServlet extends HttpServlet {
          
         Connection con = (Connection) getServletContext().getAttribute("DBConnection");
         PreparedStatement ps = null;
-        ResultSet rs = null;
+        ResultSet key = null;
         try {
         	User user = (User) session.getAttribute("User");
         	System.out.println(user.getEmail());
         	System.out.println(user.getId());
         	
-        	 ps = con.prepareStatement("insert into task(idCategorie,idExpertiseAreas,Comments,IdUser,DateStart,DateEnd,Budget,NumMaxWorker)  values (?,?,?,?,?,?,?,?)");
+        	 ps = con.prepareStatement("insert into task(idCategorie,idExpertiseAreas,Comments,IdUser,DateStart,DateEnd,Budget,NumMaxWorker)  values (?,?,?,?,?,?,?,?)",new String[]{"idTask"});
              ps.setString(1, category);
              ps.setString(2, area);
              ps.setString(3, taskDes);
@@ -71,15 +72,24 @@ public class AddTaskServlet extends HttpServlet {
            //  ps.setString(7, paymentType);
              ps.setDouble(7, budget);
              ps.setString(8, noe);
-             ps.execute();
+             ps.executeUpdate();
+             
+             key = ps.getGeneratedKeys();
+             if (key != null) {
+                 if (key.next()) {
+                     idtask = key.getString(1);
+                 }
+             }
              
           //   logger.info("User registered with email="+email);
               
-             //forward to login page to login
-             RequestDispatcher rd = getServletContext().getRequestDispatcher("/AddTask.jsp");
+             //forward to assign workers
+             //RequestDispatcher rd = getServletContext().getRequestDispatcher("/AssignTask.jsp?idTask='"+idtask+"'");
              PrintWriter out= response.getWriter();
              out.println("<font color=green>Task Added Successfully</font>");
-             rd.include(request, response);
+             request.getRequestDispatcher("/AssignTask.jsp?idTask="+idtask).forward(request, response);
+             
+             //rd.include(request, response);
             
         } catch (SQLException e) {
             e.printStackTrace();

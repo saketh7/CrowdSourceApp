@@ -185,6 +185,8 @@
 										if (worka != null) {
 											if (taskw_m.getTaskWorkerByIdTaskIdUserStatus(request, task.getIdTask(), us.getIdUser(),
 													1) == null) {
+												if(taskw_m.getTaskWorkerByIdTaskIdUserStatus(request, task.getIdTask(), us.getIdUser(),
+														3) == null){
 						%>
 						<tr>
 							<td><%=i%></td>
@@ -199,6 +201,7 @@
 								name="chkusers" onclick="countSelected()" /></td>
 						</tr>
 						<%
+												}
 							}
 										}
 									}
@@ -226,8 +229,7 @@
 		%>
 	</form>
 
-	<script
-		src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/bootbox.min.js"></script>
 

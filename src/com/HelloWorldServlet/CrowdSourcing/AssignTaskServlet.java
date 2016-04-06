@@ -65,7 +65,7 @@ public class AssignTaskServlet extends HttpServlet {
 						Users user = new Users();
 						user = user_m.getUserById(request, Integer.parseInt(listUsers[i]));
 						
-						task_m.insertTaskWorker(request, new TaskWorker(idTask, 1, user.getIdUser(), 1));
+						task_m.insertTaskWorker(request, new TaskWorker(idTask, 0, user.getIdUser(), 1));
 					}
 				
 				} catch(Exception ex){

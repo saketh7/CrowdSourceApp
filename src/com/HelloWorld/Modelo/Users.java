@@ -251,7 +251,7 @@ public class Users {
 					+ "	inner join task ta " 
 					+ "	on ta.idTask = t.idTask and (ta.DateEnd < ?) " 
 					+ ") "
-					+ "order by w.Credibility, w.level desc ,w.fee asc");
+					+ "order by w.Credibility desc, w.level desc ");
 			pst.setInt(1, idCategorie);
 			pst.setInt(2, idExpertiseAreas);
 			pst.setDate(3, fechaInicial);
